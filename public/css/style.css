@@ -1,0 +1,153 @@
+.no-select {  /*Prevents the user from selecting text*/
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+
+body {
+  text-align: center;
+  background-color: #ebffe0;
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 24px;
+}
+
+.list {
+  text-align: center;
+  display: block;
+  min-width: 943px;
+}
+
+.taskContainer {
+  margin-top: 8px;
+  text-align: center;
+}
+
+.taskContainer *, .listHeaders * {
+  display: inline-block;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+
+.taskDescription{
+  margin-right: 24px;
+  width: 640px;
+  text-align: center;
+}
+
+.dateDue {
+  width: 128px;
+  margin-right: 48px;
+  font-size: 20px;
+}
+
+.checkbox {
+  background-color: red;
+  height: 32px;
+  width: 32px;
+  margin-left: 6px;
+  margin-right: 40px;
+  vertical-align: middle;
+}
+
+input {
+  border: 1px solid lightgrey;
+}
+
+input:active, input:focus{
+  outline: 0px;
+}
+
+#taskAdder {
+  display: inline-block;
+  margin-top: 24px;
+  padding-left: 264px;
+  min-width: 943px;
+}
+
+.listHeaders > * {
+  display: inline-block;
+  font-size: 28px;
+  margin-top: 12px;
+}
+
+.complete {
+  /*Strikethrough, fade text color*/
+}
+
+/*Hides number spinner in Non-Firefox browsers*/
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/*Hides number spinner in Firefox*/
+input[type=number] {
+  -moz-appearance:textfield;
+}
+
+input:invalid {
+  border: 1px solid #ff7b00;
+  box-shadow: 0 0 2px #ff7b00;
+}
+
+.task div {
+  display: inline-block;
+}
+
+#taskInfo {
+  width: 256px;
+}
+
+#taskMonth{
+  width: 64px;
+}
+
+#taskDay {
+  width: 24px;
+}
+
+#addTask {
+  cursor: pointer;
+}
+
+#taskList {
+  width: 628px;
+  font-size: 36px;
+  text-align: center;
+  margin-left: 8px;
+}
+
+#dueList {
+  width: 148px;
+  font-size: 36px;
+  margin-left: 8px;
+}
+
+#completeList {
+  font-size: 36px;
+}
+
+.taskInfo {
+  width: 628px;
+}
+
+.taskDate {
+  width: 148px;
+}
+
+.taskComplete {
+  width: 113.25px;
+}
+
+.task:hover{
+  color: #000099;
+}
+
+.task {
+  min-width: 943px;
+}

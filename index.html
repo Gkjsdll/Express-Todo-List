@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To Do List</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <form id="taskAdder">
+    <input type="text" id="taskInfo" placeholder="Task description..." required>
+    <input type="text" id="taskMonth" placeholder="Month" required>
+    <input type="number" id="taskDay" min="1" max="31" placeholder="Day" required>
+    <input type="number" id="taskYear" placeholder="Year" required>
+    <button id="addTask" class="no-select">Add Task</button>
+  </form>
+  <div class="list">
+    <div class="listHeaders no-select">
+      <p id="taskList">Task</p>
+      <p id="dueList">Due</p>
+      <p id="completeList">Complete</p>
+    </div>
+    <div id="tasks"></div>
+  </div>
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>
