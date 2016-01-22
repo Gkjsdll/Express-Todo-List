@@ -23,11 +23,21 @@ app.post("/tasks", function(req, res){
   fs.readFile('public/tasks.json', (err, data) => {
     if(err) return res.status(400).send(err);
     var storedData = JSON.parse(data);
-    if(req.body.Index === undefined){
-      storedData.push(req.body);
+    if(req.body.Index !== undefined){
+      switch(req.body.Action){
+        case "delete":
+          storedData.splice(Number(req.body.Index), 1);
+          break;
+        case "toggleComplete":
+
+          break;
+        default:
+          console.log("No action provided");
+          break;
+      }
     }
     else{
-      storedData.splice(Number(req.body.Index), 1);
+      storedData.push(req.body);
     }
     fs.writeFile('public/tasks.json', JSON.stringify(storedData), (err) => {
       if(err) return res.status(400).send(err);

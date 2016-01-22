@@ -96,7 +96,7 @@ function promptDeleteTask(e){
 }
 
 function deleteTask(taskToDelete){
-  $.post("/tasks", {"Index": taskToDelete.index()})
+  $.post("/tasks", {"Index": taskToDelete.index(), "Action": "delete"})
   .success(function(){
     taskToDelete.remove();
   })
