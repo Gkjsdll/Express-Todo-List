@@ -29,10 +29,15 @@ app.post("/tasks", function(req, res){
           storedData.splice(Number(req.body.Index), 1);
           break;
         case "toggleComplete":
-
+          if(storedData[req.body.Index].Complete === "true"){
+            storedData[req.body.Index].Complete = "false";
+          }
+          else{
+            storedData[req.body.Index].Complete = "true";
+          }
           break;
         default:
-          console.log("No action provided");
+          return res.send("No action provided for post at task index: "+req.body.Index);
           break;
       }
     }

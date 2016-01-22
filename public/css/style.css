@@ -154,3 +154,11 @@ input[type=number] {
 .taskComplete:hover {
   color: #0000bf;
 }
+
+.task.complete {
+  color: #a6b29e;
+}
+
+.task.complete *{
+    text-decoration: line-through;
+}

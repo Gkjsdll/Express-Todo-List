@@ -13,6 +13,7 @@ function init(){
   $taskInfo = $('#taskInfo');
   $tasks = $('#tasks');
   $tasks.on("dblclick", ".task", promptDeleteTask);
+  $tasks.on("click", ".taskComplete", toggleComplete);
   $taskAdder.submit(addTask);
   popTasks();
   swal("To delete a task:", "Double-click on it", "success");
@@ -59,7 +60,9 @@ function popTasks(){
       $task.append($('<div>').addClass("taskInfo").text(value.Info));
       $task.append($taskDate);
       var $taskComplete = $("<div>").addClass("taskComplete");
-      if(data.Complete){
+      debugger;
+      if(value.Complete === "true"){
+        $task.addClass("complete");
         $taskComplete.text("Yes")
       }
       else{
@@ -105,6 +108,21 @@ function deleteTask(taskToDelete){
   })
 };
 
-function toggleComplete(){ //toggle greyed font & strikethrough of task text
-
+function toggleComplete(e){
+  var taskToToggle = $(this);
+  $.post("/tasks", {"Index": taskToToggle.closest(".task").index(), "Action": "toggleComplete"})
+  .success(function(){
+    switch (taskToToggle.text()) {
+      case "No":
+        taskToToggle.text("Yes");
+        break;
+      case "Yes":
+        taskToToggle.text("No");
+        break;
+    }
+    taskToToggle.closest(".task").toggleClass("complete");
+  })
+  .fail(function(){
+    swal("400 Error", "Bad Request");
+  })
 }
