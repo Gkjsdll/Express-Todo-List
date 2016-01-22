@@ -67,7 +67,8 @@ function popTasks(){
   });
 };
 
-function promptDeleteTask(){
+function promptDeleteTask(e){
+  var taskToDelete = $(this);
   swal({
     title: "Would you like to delete this task?",
     text: "You will not be able to recover this task!",
@@ -81,7 +82,7 @@ function promptDeleteTask(){
   function(isConfirm){
     if(isConfirm){
       swal("Deleted!", "Your task has been deleted.", "success");
-      deleteTask();
+      deleteTask(taskToDelete);
     }
     else{
       swal("Cancelled", "Your task is safe", "error");
@@ -89,8 +90,14 @@ function promptDeleteTask(){
   });
 }
 
-function deleteTask(){ //delete task from DOM and server
-  console.log("Task would be deleted.");
+function deleteTask(taskToDelete){
+  $.post("/tasks", {"Index": taskToDelete.index()})
+  .success(function(){
+    taskToDelete.remove();
+  })
+  .fail(function(){
+    swal("400 Error", "Bad Request");
+  })
 };
 
 function toggleComplete(){ //toggle greyed font & strikethrough of task text

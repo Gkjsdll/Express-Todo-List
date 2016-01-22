@@ -151,4 +151,6 @@ input:invalid {
 
 .task {
   min-width: 943px;
+  vertical-align: middle;
+  border-top: 1px solid #d4e5c9;
 }

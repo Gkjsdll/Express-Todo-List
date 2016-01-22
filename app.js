@@ -23,7 +23,12 @@ app.post("/tasks", function(req, res){
   fs.readFile('public/tasks.json', (err, data) => {
     if(err) return res.status(400).send(err);
     var storedData = JSON.parse(data);
-    storedData.push(req.body);
+    if(req.body.Index === undefined){
+      storedData.push(req.body);
+    }
+    else{
+      storedData.splice(Number(req.body.Index), 1);
+    }
     fs.writeFile('public/tasks.json', JSON.stringify(storedData), (err) => {
       if(err) return res.status(400).send(err);
       res.send(err || req.body);
