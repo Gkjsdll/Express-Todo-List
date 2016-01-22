@@ -19,8 +19,8 @@ app.get("/", function(req, res){
   res.send(html)
 });
 
-app.post("/addTask", function(req, res){
-  fs.readFile('public/tasks.json', (err, data) => { //couldn't get working with relative filepath from public folder
+app.post("/task", function(req, res){
+  fs.readFile('public/tasks.json', (err, data) => {
     if(err) return res.status(400).send(err);
     var storedData = JSON.parse(data);
     storedData.push(req.body);

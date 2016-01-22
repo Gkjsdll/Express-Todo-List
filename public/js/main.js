@@ -12,7 +12,7 @@ function init(){
   $taskYear = $('#taskYear');
   $taskInfo = $('#taskInfo');
   $tasks = $('#tasks');
-  $tasks.on("dblclick", ".task", deleteTask);
+  $tasks.on("dblclick", ".task", promptDeleteTask);
   $taskAdder.submit(addTask);
   popTasks();
   swal("To delete a task:", "Double-click on it", "success");
@@ -26,7 +26,7 @@ function addTask(e){
   taskData["Month"] = $taskMonth.val();
   taskData["Year"] = $taskYear.val();
   taskData["Info"] = $taskInfo.val();
-  $.post("/addTask", taskData)
+  $.post("/task", taskData)
   .success(function(data){
     var $task = $('<div>').addClass("task no-select");
     var $taskDate = $('<div>').addClass("taskDate");
@@ -39,10 +39,10 @@ function addTask(e){
   .fail(function(){
     swal("400 Error", "Bad Request");
   });
-  //add task to server. if task is successfully added, clear inputs & append to DOM
 }
 
 function popTasks(){
+  console.log("Tasks would be populated to the DOM");
   // var $task = $('<div>').addClass("task no-select");
   // var $taskDate = $('<div>').addClass("taskDate");
   // $taskDate.text(data.Month + " " + data.Day + ", " + data.Year);
@@ -52,6 +52,28 @@ function popTasks(){
   // $tasks.append($task);
 };
 
-function deleteTask(){
+function promptDeleteTask(){
+  swal({
+    title: "Would you like to delete this task?",
+    text: "You will not be able to recover this task!",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Yes, delete it!",
+    cancelButtonText: "No, I changed my mind!",
+    closeOnConfirm: false,
+    closeOnCancel: false
+  },
+  function(isConfirm){
+    if(isConfirm){
+      swal("Deleted!", "Your task has been deleted.", "success");
+      deleteTask();
+    }
+    else{
+      swal("Cancelled", "Your task is safe", "error");
+    }
+  });
+}
 
+function deleteTask(){
+  console.log("Task would be deleted.");
 };
