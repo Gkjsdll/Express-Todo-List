@@ -9,7 +9,6 @@ function init(){
   $taskDay = $('#taskDay');
   $taskMonth = $('#taskMonth');
   $taskYear = $('#taskYear');
-  $taskYear = $('#taskYear');
   $taskInfo = $('#taskInfo');
   $tasks = $('#tasks');
   $tasks.on("dblclick", ".task", promptDeleteTask);
@@ -60,7 +59,6 @@ function popTasks(){
       $task.append($('<div>').addClass("taskInfo").text(value.Info));
       $task.append($taskDate);
       var $taskComplete = $("<div>").addClass("taskComplete");
-      debugger;
       if(value.Complete === "true"){
         $task.addClass("complete");
         $taskComplete.text("Yes")
