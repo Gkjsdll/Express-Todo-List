@@ -146,6 +146,7 @@ input:invalid {
 
 .task:hover{
   color: #000099;
+  cursor: pointer;
 }
 
 .task {

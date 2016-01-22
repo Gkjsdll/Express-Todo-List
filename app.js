@@ -19,7 +19,7 @@ app.get("/", function(req, res){
   res.send(html)
 });
 
-app.post("/task", function(req, res){
+app.post("/tasks", function(req, res){
   fs.readFile('public/tasks.json', (err, data) => {
     if(err) return res.status(400).send(err);
     var storedData = JSON.parse(data);
@@ -30,6 +30,13 @@ app.post("/task", function(req, res){
     });
   });
 });
+
+app.get("/tasks", function(req, res){
+  fs.readFile('public/tasks.json', (err, data) => {
+    if(err) return res.status(400).send(err);
+    res.send(data);
+  })
+})
 
 app.listen(PORT, function(){
   console.log("Express server listening on port", PORT);

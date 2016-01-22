@@ -26,7 +26,8 @@ function addTask(e){
   taskData["Month"] = $taskMonth.val();
   taskData["Year"] = $taskYear.val();
   taskData["Info"] = $taskInfo.val();
-  $.post("/task", taskData)
+  taskData["Complete"] = false;
+  $.post("/tasks", taskData)
   .success(function(data){
     var $task = $('<div>').addClass("task no-select");
     var $taskDate = $('<div>').addClass("taskDate");
@@ -42,14 +43,28 @@ function addTask(e){
 }
 
 function popTasks(){
-  console.log("Tasks would be populated to the DOM");
-  // var $task = $('<div>').addClass("task no-select");
-  // var $taskDate = $('<div>').addClass("taskDate");
-  // $taskDate.text(data.Month + " " + data.Day + ", " + data.Year);
-  // $task.append($('<div>').addClass("taskInfo").text(data.Info));
-  // $task.append($taskDate);
-  // $task.append($("<div>").addClass("taskComplete").text("No"));
-  // $tasks.append($task);
+  var $taskList = [];
+  $.get("/tasks")
+  .success(function(data){
+    var taskData = JSON.parse(data);
+    taskData.forEach(function(value, index){
+      var $task = $('<div>').addClass("task no-select");
+      var $taskDate = $('<div>').addClass("taskDate");
+      $taskDate.text(value.Month + " " + value.Day + ", " + value.Year);
+      $task.append($('<div>').addClass("taskInfo").text(value.Info));
+      $task.append($taskDate);
+      var $taskComplete = $("<div>").addClass("taskComplete");
+      if(data.Complete){
+        $taskComplete.text("Yes")
+      }
+      else{
+        $taskComplete.text("No");
+      }
+      $task.append($taskComplete);
+      $taskList.push($task);
+    });
+    $tasks.append($taskList);
+  });
 };
 
 function promptDeleteTask(){
@@ -74,6 +89,10 @@ function promptDeleteTask(){
   });
 }
 
-function deleteTask(){
+function deleteTask(){ //delete task from DOM and server
   console.log("Task would be deleted.");
 };
+
+function toggleComplete(){ //toggle greyed font & strikethrough of task text
+
+}
