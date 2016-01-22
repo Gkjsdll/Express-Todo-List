@@ -90,11 +90,6 @@ input[type=number] {
   -moz-appearance:textfield;
 }
 
-input:invalid {
-  border: 1px solid #ff7b00;
-  box-shadow: 0 0 2px #ff7b00;
-}
-
 .task div {
   display: inline-block;
 }
@@ -145,12 +140,16 @@ input:invalid {
 }
 
 .task:hover{
-  color: #000099;
   cursor: pointer;
+  background-color: #dbedd0;
 }
 
 .task {
   min-width: 943px;
   vertical-align: middle;
   border-top: 1px solid #d4e5c9;
+}
+
+.taskComplete:hover {
+  color: #0000bf;
 }

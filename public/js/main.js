@@ -36,6 +36,11 @@ function addTask(e){
     $task.append($taskDate);
     $task.append($("<div>").addClass("taskComplete").text("No"));
     $tasks.append($task);
+
+    $taskDay.val("");
+    $taskMonth.val("");
+    $taskYear.val("");
+    $taskInfo.val("");
   })
   .fail(function(){
     swal("400 Error", "Bad Request");
